@@ -13,8 +13,14 @@ let adjList={}
 // console.log(adjList[a])
 
 edge.forEach( (pair) =>{
-    adjList.pair[0].push(pair[1])
-    adjList.pair[1].push(pair[0])
+    let [a,b] = pair
+
+    if( ! (a in adjList) ) adjList[a] =[]
+    if( ! (b in adjList) ) adjList[b] =[]
+
+    adjList[a].push(b)
+    adjList[b].push(a)
+
 } )
 
 console.log(adjList)
