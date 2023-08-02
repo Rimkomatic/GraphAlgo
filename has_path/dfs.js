@@ -10,9 +10,9 @@ const graph = {
 const stack=[]
 const traversed=[]
 
-// console.log(traversed.includes('c'))
 
-depthFirstTraversal('a')
+
+console.log(depthFirstTraversal('e','b'))
 
 function isEmpty()
 {
@@ -28,26 +28,38 @@ function isAlreadyTraversed(val)
 function printAndPush()
 {
     let cur=stack.pop()
-    console.log(cur)
     traversed.push(cur)
+  
     
-    for(let e of graph[cur])
-    {
-        if(!isAlreadyTraversed(e) && !stack.includes(e)) 
+        for(let e of graph[cur])
         {
-            stack.push(e)
+            if(!isAlreadyTraversed(e) && !stack.includes(e)) 
+            {
+                stack.push(e)
+            }
         }
-    }
+  
+    
 }
 
 
-function depthFirstTraversal(start)
+function reached(dest)
+{
+    return traversed.includes(dest)
+}
+
+
+function depthFirstTraversal(start,dest)
 {
     stack.push(start)
 
     while(!isEmpty())
     {
         printAndPush()
+
+        if(reached(dest)) return true
     }
+    
+    return false
 }
 
